@@ -1,6 +1,8 @@
 # models/volunteer.py
-from sqlalchemy import Column, Integer, String, Enum
+from sqlalchemy import Column, Integer, String, Enum, DateTime
 from database.base import Base
+from datetime import datetime
+from sqlalchemy.sql import func
 import enum
 
 class CargoEnum(str, enum.Enum):
@@ -30,3 +32,4 @@ class Volunteer(Base):
     desired_position = Column(Enum(CargoEnum), nullable=False)
     availability = Column(Enum(AvailabilityEnum), nullable=False)
     status = Column(Enum(StatusEnum), nullable=False, default=StatusEnum.ACTIVE)
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
