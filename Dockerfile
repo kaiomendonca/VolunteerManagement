@@ -3,6 +3,8 @@ FROM python:3.12
 
 WORKDIR /app
 
+ENV PYTHONPATH="/app"
+
 
 COPY pyproject.toml poetry.lock ./
 
@@ -14,7 +16,7 @@ RUN poetry install --no-root --only main
 
 
 COPY volunteer_management/ ./volunteer_management/
-
+COPY .env ./
 
 EXPOSE 8000
 
