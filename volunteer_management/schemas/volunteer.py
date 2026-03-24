@@ -1,5 +1,5 @@
 from pydantic import BaseModel, EmailStr
-from models.volunteer import AvailabilityEnum, StatusEnum, CargoEnum
+from volunteer_management.models.volunteer import AvailabilityEnum, StatusEnum, CargoEnum
 from datetime import datetime
 
 class VolunteerCreate(BaseModel):
