@@ -6,62 +6,49 @@ from volunteer_management.services.volunteer import (
     list_volunteers,
     get_volunteer_by_id,
     update_volunteer,
-    inactive_volunteer
+    inactive_volunteer,
 )
 from volunteer_management.schemas.volunteer import (
     VolunteerCreate,
     VolunteerResponse,
-    VolunteerUpdate
+    VolunteerUpdate,
 )
 
 router = APIRouter(prefix="/volunteers", tags=["Volunteers"])
 
+
 @router.post("/", response_model=VolunteerResponse)
-def register_volunteer(
-    volunteer_in: VolunteerCreate,
-    db: Session = Depends(get_db)
-):
-    return create_volunteer(
-        db=db,
-        volunteer_in=volunteer_in
-    )
+def register_volunteer(volunteer_in: VolunteerCreate, db: Session = Depends(get_db)):
+    return create_volunteer(db=db, volunteer_in=volunteer_in)
+
 
 @router.get("/")
 def volunteers_listed(
     desired_position: str = None,
     availability: str = None,
     status: str = None,
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
 ):
     return list_volunteers(
         db=db,
         desired_position=desired_position,
         availability=availability,
-        status=status
+        status=status,
     )
 
+
 @router.get("/{volunteer_id}")
-def get_volunteer(
-    volunteer_id: int,
-    db: Session = Depends(get_db)
-):
+def get_volunteer(volunteer_id: int, db: Session = Depends(get_db)):
     return get_volunteer_by_id(db=db, volunteer_id=volunteer_id)
+
 
 @router.put("/{volunteer_id}", response_model=VolunteerResponse)
 def update_volunteer_data(
-    volunteer_id: int,
-    data: VolunteerUpdate,
-    db: Session = Depends(get_db)
+    volunteer_id: int, data: VolunteerUpdate, db: Session = Depends(get_db)
 ):
-    return update_volunteer(
-        db=db,
-        volunteer_id=volunteer_id,
-        data=data
-    )
-    
+    return update_volunteer(db=db, volunteer_id=volunteer_id, data=data)
+
+
 @router.delete("/{volunteer_id}")
-def turn_volunteer_inactive(
-    volunteer_id: int,
-    db: Session = Depends(get_db)
-):
+def turn_volunteer_inactive(volunteer_id: int, db: Session = Depends(get_db)):
     return inactive_volunteer(db=db, volunteer_id=volunteer_id)

@@ -8,4 +8,5 @@ app = FastAPI()
 def root():
     return {"message": "API is working!"}
 
+
 app.include_router(volunteers.router)

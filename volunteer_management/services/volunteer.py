@@ -5,24 +5,23 @@ from sqlalchemy.exc import IntegrityError
 from fastapi import HTTPException
 from volunteer_management.models.volunteer import StatusEnum
 
+
 def create_volunteer(db: Session, volunteer_in: VolunteerCreate):
     db_volunteer = Volunteer(**volunteer_in.model_dump())
     db.add(db_volunteer)
-    
+
     try:
         db.commit()
         db.refresh(db_volunteer)
         return db_volunteer
-    
+
     except IntegrityError:
         db.rollback()
-        raise HTTPException(
-            status_code = 400,
-            detail="Email already registered."
-        )     
+        raise HTTPException(status_code=400, detail="Email already registered.")
 
 
-def list_volunteers(db: Session,
+def list_volunteers(
+    db: Session,
     desired_position: str = None,
     availability: str = None,
     status: str = None,
@@ -44,62 +43,45 @@ def list_volunteers(db: Session,
 
 def get_volunteer_by_id(db: Session, volunteer_id: int):
     volunteer = db.query(Volunteer).filter(volunteer_id == Volunteer.id).first()
-    
+
     if not volunteer:
-        raise HTTPException(
-            status_code=404,
-            detail= "Volunteer not found"
-        )
-        
+        raise HTTPException(status_code=404, detail="Volunteer not found")
+
     return volunteer
 
 
 def update_volunteer(db: Session, volunteer_id: int, data):
     volunteer = db.query(Volunteer).filter(volunteer_id == Volunteer.id).first()
-    
+
     if not volunteer:
-        raise HTTPException(
-            status_code=404,
-            detail="Volunteer not found"
-        )
-        
+        raise HTTPException(status_code=404, detail="Volunteer not found")
+
     for key, value in data.model_dump(exclude_unset=True).items():
         setattr(volunteer, key, value)
-        
+
     try:
         db.commit()
         db.refresh(volunteer)
         return volunteer
-    
+
     except IntegrityError:
         db.rollback()
         raise HTTPException(
-            status_code=409,
-            detail="Email already exists. Update data correctly"
+            status_code=409, detail="Email already exists. Update data correctly"
         )
-        
+
 
 def inactive_volunteer(db: Session, volunteer_id: int):
     volunteer = db.query(Volunteer).filter(volunteer_id == Volunteer.id).first()
-    
+
     if not volunteer:
-        raise HTTPException(
-            status_code=404,
-            detail="Volunteer not found"
-        )
-        
-    
+        raise HTTPException(status_code=404, detail="Volunteer not found")
+
     if volunteer.status == StatusEnum.INACTIVE:
-        raise HTTPException(
-            status_code=400,
-            detail="Volunteer already inactive"
-        )
-        
+        raise HTTPException(status_code=400, detail="Volunteer already inactive")
+
     volunteer.status = StatusEnum.INACTIVE
     db.commit()
     db.refresh(volunteer)
-    
+
     return {"message": "Volunteer deactivated sucessfully"}
-        
-    
-    

@@ -1,7 +1,12 @@
 from pydantic import BaseModel, EmailStr
-from volunteer_management.models.volunteer import AvailabilityEnum, StatusEnum, CargoEnum
+from volunteer_management.models.volunteer import (
+    AvailabilityEnum,
+    StatusEnum,
+    CargoEnum,
+)
 from datetime import datetime
 from typing import Optional
+
 
 class VolunteerCreate(BaseModel):
     name: str
@@ -9,7 +14,8 @@ class VolunteerCreate(BaseModel):
     phone: str
     desired_position: CargoEnum
     availability: AvailabilityEnum
-    
+
+
 class VolunteerResponse(BaseModel):
     id: int
     name: str
@@ -22,11 +28,11 @@ class VolunteerResponse(BaseModel):
 
     class Config:
         from_attributes = True
-        
+
+
 class VolunteerUpdate(BaseModel):
     name: Optional[str] = None
     email: Optional[EmailStr] = None
     phone: Optional[str] = None
-    desired_position : Optional[CargoEnum] = None
+    desired_position: Optional[CargoEnum] = None
     availability: Optional[AvailabilityEnum] = None
-    

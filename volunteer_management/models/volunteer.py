@@ -4,10 +4,12 @@ from volunteer_management.database.base import Base
 from sqlalchemy.sql import func
 import enum
 
+
 class CargoEnum(str, enum.Enum):
     BACKEND = "backend"
     FRONTEND = "frontend"
     FULLSTACK = "fullstack"
+
 
 class AvailabilityEnum(str, enum.Enum):
     MORNING = "morning"
@@ -15,10 +17,10 @@ class AvailabilityEnum(str, enum.Enum):
     EVENING = "evening"
     WEEKEND = "weekend"
 
+
 class StatusEnum(str, enum.Enum):
     ACTIVE = "active"
     INACTIVE = "inactive"
-    
 
 
 class Volunteer(Base):
