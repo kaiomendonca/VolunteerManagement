@@ -39,3 +39,44 @@ def list_volunteers(db: Session,
         query = query.filter(Volunteer.availability == availability)
 
     return query.all()
+
+
+def get_volunteer_by_id(db: Session, volunteer_id: int):
+    volunteer = db.query(Volunteer).filter(volunteer_id == Volunteer.id).first()
+    
+    if not volunteer:
+        raise HTTPException(
+            status_code=404,
+            detail= "Volunteer not found"
+        )
+        
+    return volunteer
+
+
+def update_volunteer(db: Session, volunteer_id: int, data):
+    volunteer = db.query(Volunteer).filter(volunteer_id == Volunteer.id).first()
+    
+    if not volunteer:
+        raise HTTPException(
+            status_code=404,
+            detail="Volunteer not found"
+        )
+        
+    for key, value in data.model_dump(exclude_unset=True).items():
+        setattr(volunteer, key, value)
+        
+    try:
+        db.commit()
+        db.refresh(volunteer)
+        return volunteer
+    
+    except IntegrityError:
+        db.rollback()
+        raise HTTPException(
+            status_code=409,
+            detail="Email already exists. Update data correctly"
+        )
+        
+    
+    
+    
