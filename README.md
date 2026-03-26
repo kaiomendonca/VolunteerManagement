@@ -1,8 +1,6 @@
 # Volunteer Management API
 - The documentation will be created using the English language to ensure standardization of the reading experience.
-
-
-# A REST API developed for managing volunteers, allowing registration, updates, filtered queries, and soft deletion of records. The project was built as part of a technical challenge focused on backend best practices.
+- A REST API developed for managing volunteers, allowing registration, updates, filtered queries, and soft deletion of records. The project was built as part of a technical challenge focused on backend best practices.
 
 ## Tech Stack
 
