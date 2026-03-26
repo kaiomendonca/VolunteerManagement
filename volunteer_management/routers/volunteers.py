@@ -5,7 +5,8 @@ from volunteer_management.services.volunteer import (
     create_volunteer,
     list_volunteers,
     get_volunteer_by_id,
-    update_volunteer
+    update_volunteer,
+    inactive_volunteer
 )
 from volunteer_management.schemas.volunteer import (
     VolunteerCreate,
@@ -57,3 +58,10 @@ def update_volunteer_data(
         volunteer_id=volunteer_id,
         data=data
     )
+    
+@router.delete("/{volunteer_id}")
+def turn_volunteer_inactive(
+    volunteer_id: int,
+    db: Session = Depends(get_db)
+):
+    return inactive_volunteer(db=db, volunteer_id=volunteer_id)
