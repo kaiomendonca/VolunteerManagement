@@ -3,6 +3,7 @@ from volunteer_management.models.volunteer import Volunteer
 from volunteer_management.schemas.volunteer import VolunteerCreate
 from sqlalchemy.exc import IntegrityError
 from fastapi import HTTPException
+from volunteer_management.models.volunteer import StatusEnum
 
 def create_volunteer(db: Session, volunteer_in: VolunteerCreate):
     db_volunteer = Volunteer(**volunteer_in.model_dump())
@@ -77,6 +78,28 @@ def update_volunteer(db: Session, volunteer_id: int, data):
             detail="Email already exists. Update data correctly"
         )
         
+
+def inactive_volunteer(db: Session, volunteer_id: int):
+    volunteer = db.query(Volunteer).filter(volunteer_id == Volunteer.id).first()
     
+    if not volunteer:
+        raise HTTPException(
+            status_code=404,
+            detail="Volunteer not found"
+        )
+        
+    
+    if volunteer.status == StatusEnum.INACTIVE:
+        raise HTTPException(
+            status_code=400,
+            detail="Volunteer already inactive"
+        )
+        
+    volunteer.status = StatusEnum.INACTIVE
+    db.commit()
+    db.refresh(volunteer)
+    
+    return {"message": "Volunteer deactivated sucessfully"}
+        
     
     
