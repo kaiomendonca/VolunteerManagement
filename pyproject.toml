@@ -21,5 +21,12 @@ build-backend = "poetry.core.masonry.api"
 
 [dependency-groups]
 dev = [
-    "pytest (>=9.0.2,<10.0.0)"
+    "pytest (>=9.0.2,<10.0.0)",
+    "taskipy (>=1.14.1,<2.0.0)",
+    "ruff (>=0.15.7,<0.16.0)"
 ]
+
+[tool.taskipy.tasks]
+test = "pytest"
+lint = "ruff check ."
+format = "ruff format ."
