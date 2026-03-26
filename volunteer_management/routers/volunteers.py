@@ -7,8 +7,14 @@ from volunteer_management.services.volunteer import create_volunteer, list_volun
 router = APIRouter(prefix="/volunteers", tags=["Volunteers"])
 
 @router.post("/", response_model=VolunteerResponse)
-def register_volunteer(volunteer_in: VolunteerCreate, db: Session = Depends(get_db)):
-    return create_volunteer(db=db, volunteer_in=volunteer_in)
+def register_volunteer(
+    volunteer_in: VolunteerCreate,
+    db: Session = Depends(get_db)
+):
+    return create_volunteer(
+        db=db,
+        volunteer_in=volunteer_in
+    )
 
 @router.get("/")
 def volunteers_listed(
