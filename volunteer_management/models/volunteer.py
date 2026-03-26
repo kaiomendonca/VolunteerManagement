@@ -1,7 +1,6 @@
 # models/volunteer.py
 from sqlalchemy import Column, Integer, String, Enum, DateTime
 from volunteer_management.database.base import Base
-from datetime import datetime
 from sqlalchemy.sql import func
 import enum
 
