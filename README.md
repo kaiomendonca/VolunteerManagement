@@ -15,19 +15,20 @@
 ## How to run
 
 ### Clone the repository
-git clone <repo-url>
-cd repo
+`git clone <repo-url>`
+
+`cd repo`
 
 ### Install Poetry
 - Windows:
-    pip install poetry
+    pip `install poetry`
 
 - Linux:
-    curl -sSL https://install.python-poetry.org | python3 -
+    `curl -sSL https://install.python-poetry.org | python3 -`
 
 
 ### Install dependencies
-poetry install 
+`poetry install`
 
 This already does everything automatically:
 
@@ -37,10 +38,11 @@ This already does everything automatically:
 
 ### Environment Variables
 - Create a `.env` file
-    There is a .env.example file to base the environment variables used in the project on.
+  
+    There is a `.env.example` file to base the environment variables used in the project on.
 
 ### Start database with Docker and Run application
-docker compose up --build
+`docker compose up --build`
 
 ## Features
 
