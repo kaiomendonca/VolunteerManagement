@@ -44,7 +44,7 @@ This already does everything automatically:
 ### Start database with Docker and Run application
 `docker compose up --build`
 
-## Features
+## EndPoints
 
 - **Register volunteers**  
   Create a new volunteer in the system.
