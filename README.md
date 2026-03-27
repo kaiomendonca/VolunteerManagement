@@ -21,7 +21,7 @@
 
 ### Install Poetry
 - Windows:
-    pip `install poetry`
+    `pip install poetry`
 
 - Linux:
     `curl -sSL https://install.python-poetry.org | python3 -`
