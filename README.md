@@ -207,11 +207,10 @@ Marks the volunteer as inactive instead of deleting from database.
 }
 ```
 
-## Important technical decisions
 
-### Technical Decisions
+## Technical Decisions
 
-**Use of Poetry**
+### Use of Poetry
 
 At the beginning of the project, I faced some difficulty using Poetry due to a lack of familiarity with the tool. To overcome this, I studied the official documentation, performed several tests, and gradually adapted to its workflow.
 
