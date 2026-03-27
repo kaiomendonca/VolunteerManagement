@@ -42,7 +42,7 @@ def get_volunteer(volunteer_id: int, db: Session = Depends(get_db)):
     return get_volunteer_by_id(db=db, volunteer_id=volunteer_id)
 
 
-@router.put("/{volunteer_id}", response_model=VolunteerResponse)
+@router.patch("/{volunteer_id}", response_model=VolunteerResponse)
 def update_volunteer_data(
     volunteer_id: int, data: VolunteerUpdate, db: Session = Depends(get_db)
 ):
