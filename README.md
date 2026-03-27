@@ -207,6 +207,55 @@ Marks the volunteer as inactive instead of deleting from database.
 }
 ```
 
+## Important technical decisions
+
+### Technical Decisions
+
+**Use of Poetry**
+
+At the beginning of the project, I faced some difficulty using Poetry due to a lack of familiarity with the tool. To overcome this, I studied the official documentation, performed several tests, and gradually adapted to its workflow.
+
+By the end of the process, I was able to use Poetry effectively for dependency management and project organization, which contributed to a cleaner and more structured development environment.
+
+### Choice of Software Architecture
+
+One of the most important decisions in this project was the choice of software architecture.
+
+I opted for an approach that promotes separation of concerns, aiming to keep the codebase scalable, readable, and easy to maintain. This structure makes it easier to evolve the application over time, add new features, and maintain consistency across different layers of the system.
+
+### Use of Docker
+
+Instead of using an in-memory approach (such as lists) for data storage, I chose to use Docker as a way to demonstrate practical knowledge of containerization and real-world application setup.
+
+This decision was initially challenging, especially when integrating Docker with Poetry, but it provided a more realistic development environment.
+
+The application was structured using three containers:
+
+- API (Volunteers): Responsible for handling requests and business logic
+- PostgreSQL: Database used for persistent data storage
+- PgAdmin: Graphical interface for database management and queries
+
+Using Docker helped reduce some manual setup steps, although Poetry was still used for dependency management and local development workflows.
+
+
+### Focus on Code Readability
+
+Another important decision was to prioritize code readability across the entire project.
+
+This includes:
+
+- Clear and descriptive variable names
+- Well-defined schemas and models
+- Organized structure of classes and modules
+
+The goal was to make the application easy to understand and use, even for developers with only basic familiarity with the technologies involved.
+
+### Documentation Strategy
+
+Special attention was given to the construction of the README.
+
+The goal was to keep the documentation concise and objective, allowing anyone to understand and start using the application within a few minutes, without unnecessary complexity.
+
 
 
 
