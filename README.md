@@ -62,6 +62,39 @@ This already does everything automatically:
   Marks a volunteer as inactive instead of deleting it from the database.
 
 
+## Example Usage
+
+### Create a Volunteer
+
+**Endpoint:**
+POST /volunteers
+
+**Request Body:**
+```json
+{
+  "name": "example",
+  "email": "example404@example.com",
+  "phone": "21999999999",
+  "desired_position": "frontend",
+  "availability": "weekends"
+}
+```
+
+**Response (201 Created):**
+```json
+{
+  "id": 1,
+  "name": "example",
+  "email": "example404@example.com",
+  "phone": "21999999999",
+  "desired_position": "frontend",
+  "availability": "weekends",
+  "status": "active",
+  "created_at": "2026-03-26T15:00:00"
+}
+```
+
+
 
 
 
