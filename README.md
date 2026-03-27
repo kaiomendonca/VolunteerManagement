@@ -93,9 +93,119 @@ POST /volunteers
   "created_at": "2026-03-26T15:00:00"
 }
 ```
+### List Volunteers with Filters
 
+**Endpoint:**
+GET /volunteers
 
+**Query Parameters (optional):**
+- desired_position
+- availability
+- status
 
+**Example Request:**
+GET /volunteers?desired_position=backend&availability=weekends
+
+**Response (200 OK):**
+```json
+[
+  {
+    "id": 1,
+    "name": "João Silva",
+    "email": "joao@example.com",
+    "phone": "21999999999",
+    "desired_position": "backend",
+    "availability": "weekends",
+    "status": "active",
+    "created_at": "2026-03-26T15:00:00"
+  }
+]
+```
+
+### Get Volunteer by ID
+
+**Endpoint:**
+GET /volunteers/{id}
+
+**Example Request:**
+GET /volunteers/1
+
+**Response (200 OK):**
+```json
+{
+  "id": 1,
+  "name": "João Silva",
+  "email": "joao@example.com",
+  "phone": "21999999999",
+  "desired_position": "backend",
+  "availability": "weekends",
+  "status": "active",
+  "created_at": "2026-03-26T15:00:00"
+}
+```
+
+**Error Response (404 Not Found):**
+```json
+{
+  "detail": "Volunteer not found"
+}
+```
+
+### Update Volunteer
+
+**Endpoint:**
+PATCH /volunteers/{id}
+
+**Request Body (partial update allowed):**
+```json
+{
+  "phone": "21988888888",
+  "availability": "weekdays"
+}
+```
+
+**Response (200 OK):**
+```json
+{
+  "id": 1,
+  "name": "João Silva",
+  "email": "joao@example.com",
+  "phone": "21988888888",
+  "desired_position": "backend",
+  "availability": "weekdays",
+  "status": "active",
+  "created_at": "2026-03-26T15:00:00"
+}
+```
+
+**Error Response (404 Not Found):**
+```json
+{
+  "detail": "Volunteer not found"
+}
+```
+
+### Soft Delete (Inactivate Volunteer)
+
+**Endpoint:**
+DELETE /volunteers/{id}
+
+**Behavior:**
+Marks the volunteer as inactive instead of deleting from database.
+
+**Response (200 OK):**
+```json
+{
+  "message": "Volunteer inactivated successfully"
+}
+```
+
+**Error Response (404 Not Found):**
+```json
+{
+  "detail": "Volunteer not found"
+}
+```
 
 
 
