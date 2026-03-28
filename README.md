@@ -44,6 +44,22 @@ This already does everything automatically:
 ### Start database with Docker and Run application
 `docker compose up --build`
 
+### Running Tests
+To run the automated tests, use the following command:
+`poetry run task test`
+
+**Test Database**
+
+The test suite uses a local SQLite database (test.db) instead of the main PostgreSQL database.
+
+This approach ensures that:
+
+- Tests run quickly and independently
+- No real data is affected during testing
+- The environment is simple and does not require Docker or external services
+
+The SQLite database is created automatically during the test run and used only for testing purposes.
+
 ## EndPoints
 
 - **Register volunteers**  
