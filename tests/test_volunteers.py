@@ -1,6 +1,3 @@
-from volunteer_management.models.volunteer import AvailabilityEnum, CargoEnum
-
-
 def test_create_valid_volunteer(client):
     """Should create volunteer with valid data"""
 
