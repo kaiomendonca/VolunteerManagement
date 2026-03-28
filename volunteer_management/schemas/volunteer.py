@@ -1,4 +1,4 @@
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, EmailStr, ConfigDict
 from volunteer_management.models.volunteer import (
     AvailabilityEnum,
     StatusEnum,
@@ -26,8 +26,7 @@ class VolunteerResponse(BaseModel):
     status: StatusEnum
     created_at: datetime
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class VolunteerUpdate(BaseModel):
