@@ -6,7 +6,7 @@ def test_create_valid_volunteer(client):
         "email": "joao@email.com",
         "phone": "21999999999",
         "desired_position": "backend",
-        "availability": "weekend" 
+        "availability": "weekend",
     }
 
     response = client.post("/volunteers", json=payload)
@@ -23,7 +23,7 @@ def test_do_not_allow_duplicate_email(client):
         "email": "joao@email.com",
         "phone": "21999999999",
         "desired_position": "backend",
-        "availability": "weekend"
+        "availability": "weekend",
     }
 
     response_first = client.post("/volunteers", json=payload)
