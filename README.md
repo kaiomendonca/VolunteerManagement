@@ -255,6 +255,22 @@ Special attention was given to the construction of the README.
 
 The goal was to keep the documentation concise and objective, allowing anyone to understand and start using the application within a few minutes, without unnecessary complexity.
 
+### Local Database
+
+One of the most challenging decisions during the development process was introducing a separate database dedicated exclusively to testing.
+
+Initially, the application was fully coupled to PostgreSQL running in a container, which made it harder to run automated tests locally in a simple and efficient way. This led me to rethink best practices around test isolation and reducing dependency on external infrastructure.
+
+As a solution, I decided to introduce SQLite as an alternative database for the testing environment. This approach allowed me to:
+
+- Run tests locally without relying on containers or external services
+- Improve test execution speed
+- Ensure better isolation and predictability in tests
+
+This was not a trivial decision, especially because I did not previously have experience with using a dedicated database for testing. Throughout the process, I had to better understand environment-based configurations, adjust database connections, and adapt the application to support multiple scenarios.
+
+Despite the initial difficulty, implementing this solution significantly contributed to my learning. It not only improved the overall quality of the project but also helped me evolve my understanding of backend architecture and testing practices.
+
 
 
 
