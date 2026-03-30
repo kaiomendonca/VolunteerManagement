@@ -5,7 +5,7 @@ from sqlalchemy.sql import func
 import enum
 
 
-class CargoEnum(str, enum.Enum):
+class PositionEnum(str, enum.Enum):
     BACKEND = "backend"
     FRONTEND = "frontend"
     FULLSTACK = "fullstack"
@@ -30,7 +30,7 @@ class Volunteer(Base):
     name = Column(String, nullable=False)
     email = Column(String, unique=True, nullable=False, index=True)
     phone = Column(String, nullable=False)
-    desired_position = Column(Enum(CargoEnum), nullable=False)
+    desired_position = Column(Enum(PositionEnum), nullable=False)
     availability = Column(Enum(AvailabilityEnum), nullable=False)
     status = Column(Enum(StatusEnum), nullable=False, default=StatusEnum.ACTIVE)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
